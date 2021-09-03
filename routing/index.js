@@ -1,3 +1,4 @@
+const { NOTINITIALIZED } = require("dns");
 const fs = require("fs");
 let data = JSON.parse(fs.readFileSync("./db/db.json", "utf8"));
 
@@ -6,6 +7,33 @@ module.exports = function(app) {
         res.json(data[Number(req.params.id)]);
     });
     app.get("/api/notes", function(req, res) {
+        res.json(data);
+    });
+
+    app.post("/api/notes", function(req, res) {
+        let newNote = req.body;
+        let uniqueId = (data.length).toString();
+        newNote.id = uniqueId;
+        data.push(newNote);
+
+        fs.writeFileSync("./db/db.json", JSON.stringify(data), function(err) {
+            if (err) throw (err);
+        });
+
+        res.json(data);
+    });
+
+    app.delete("/apt/notes/:id", function(req, res) {
+        let nodeId = req.params.id;
+        let newId = 0;
+        data = data.filter(currentNote => {
+            return currentNote.id != noteId;
+        });
+        for (currentNote of data) {
+            currentNote.id = newId.toString();
+            newId++;
+        }
+        fs.writeFileSync("./db/db.json", JSON.stringify(data));
         res.json(data);
     });
 }
