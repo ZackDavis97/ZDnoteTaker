@@ -6,7 +6,7 @@ let PORT = process.env.PORT || 3001;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use("/assets", express.static("./assets"));
+app.use(express.static("public"));
 
 require("./routing/api-notes")(app);
 require("./routing/html-notes")(app);
