@@ -24,7 +24,7 @@ module.exports = function(app) {
         res.json(data);
     });
 
-    app.delete("/apt/notes/:id", function(req, res) {
+    app.delete("/api/notes/:id", function(req, res) {
         
         let noteId = req.params.id;
         let newId = 0;
