@@ -25,7 +25,7 @@ module.exports = function(app) {
     });
 
     app.delete("/apt/notes/:id", function(req, res) {
-        let nodeId = req.params.id;
+        let noteId = req.params.id;
         let newId = 0;
         data = data.filter(currentNote => {
             return currentNote.id != noteId;

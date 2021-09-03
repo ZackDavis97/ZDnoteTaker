@@ -8,7 +8,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use("/assets", express.static("./assets"));
 
-require("./routing/index")(app);
+require("./routing/api-notes")(app);
 require("./routing/html-notes")(app);
 
 app.listen(PORT, function() {
